@@ -3,7 +3,7 @@ name: "Terraform-Plan-Infra-Plan"
 on:
   push:
     branches:
-      - FeatureBranch1
+      - main
 
 jobs:
   terraform:
@@ -26,4 +26,4 @@ jobs:
       - name: Terraform Plan
         id: plan
         if: github.event_name == 'push'
-        run: terraform plan -no-color
+        run: terraform plan -var-file="dev.tfvars" -out="dev.tfplan"
